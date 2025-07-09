@@ -75,16 +75,23 @@ const cart = [];
 const total = 0;
 
 // Exercise 1
- const buy = (id) => {
+ const buy = (productId) => {
     // 1. Loop for to the array products to get the item to add to cart
-  let selected = products.find(item => item.id === id) 
+  let selected = products.find(item => item.id === productId) 
     // 2. Add found product to the cart array
-    cart.push(selected)
+   if (selected.quantity) {
+       selected.quantity += 1
+   } else {
+       selected.quantity = 1
+       cart.push(selected)
+   }
+   
     console.log(cart)
 }
+
 document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', () => {
-        const id = event.currentTarget.dataset.productId
+    button.addEventListener('click', e => {
+        const id = parseInt(e.currentTarget.dataset.productId)
         buy(id)
     })
     
