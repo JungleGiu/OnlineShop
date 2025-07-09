@@ -75,10 +75,20 @@ const cart = [];
 const total = 0;
 
 // Exercise 1
-const buy = (id) => {
+ const buy = (id) => {
     // 1. Loop for to the array products to get the item to add to cart
+  let selected = products.find(item => item.id === id) 
     // 2. Add found product to the cart array
+    cart.push(selected)
+    console.log(cart)
 }
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', () => {
+        const id = event.currentTarget.dataset.productId
+        buy(id)
+    })
+    
+})
 
 // Exercise 2
 const cleanCart = () =>  {
@@ -92,7 +102,7 @@ const calculateTotal = () =>  {
 
 // Exercise 4
 const applyPromotionsCart = () =>  {
-    // Apply promotions to each item in the array "cart"
+// Apply promotions to each item in the array "cart"
 }
 
 // Exercise 5
