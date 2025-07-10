@@ -74,48 +74,60 @@ const cart = [];
 
 const total = 0;
 
+
+
+const updateCartCounter =() =>{
+  
+        let cartCounter = document.getElementById('count_product')
+        cartCounter.textContent = cart.length
+        cartCounter.classList.remove('bg-dark','bg-danger')
+        cartCounter.classList.add(cart.length>0?'bg-danger' :'bg-dark')
+
+}
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', e => {
+        const id = parseInt(e.currentTarget.dataset.productId);
+        buy(id);
+    });
+});
+
 // Exercise 1
  const buy = (productId) => {
     // 1. Loop for to the array products to get the item to add to cart
   let selected = products.find(item => item.id === productId) 
     // 2. Add found product to the cart array
-   if (selected.quantity) {
-       selected.quantity += 1
-   } else {
-       selected.quantity = 1
-       cart.push(selected)
-   }
+ let cartProduct = cart.find(item => item.id === productId)
+
+ if (cartProduct){
+    cartProduct.quantity +=1
+ }
+ else {
+    cart.push(selected)
+    selected.quantity = 1
+ }
    
     console.log(cart)
+    updateCartCounter()
 }
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', e => {
-        const id = parseInt(e.currentTarget.dataset.productId)
-        buy(id)
-        let cartCounter = document.getElementById('count_product')
-        cartCounter.textContent = cart.length
-        cartCounter.classList.remove('bg-dark')
-        cartCounter.classList.add('bg-danger')
-    })
-})
+
 
 // Exercise 2
 const cleanCart = () =>  {
-cart.length = 0
+cart.splice(0, cart.length)
 console.log(cart)
 }
 document.querySelector('#clean-cart').addEventListener('click', (e) => {
     cleanCart();
-        let cartCounter = document.getElementById('count_product')
-        cartCounter.textContent = cart.length
-        cartCounter.classList.remove('bg-danger')
-        cartCounter.classList.add('bg-dark')
+    updateCartCounter()
 });
 
 
 // Exercise 3
 const calculateTotal = () =>  {
     // Calculate total price of the cart using the "cartList" array
+    let total = 0
+    cart.forEach(item => {total += (item.price*item.quantity)})
+    return total
 }
 
 // Exercise 4
@@ -126,6 +138,7 @@ const applyPromotionsCart = () =>  {
 // Exercise 5
 const printCart = () => {
     // Fill the shopping cart modal manipulating the shopping cart dom
+   
 }
 
 
