@@ -126,18 +126,46 @@ document.querySelector('#clean-cart').addEventListener('click', (e) => {
 const calculateTotal = () =>  {
     // Calculate total price of the cart using the "cartList" array
     let total = 0
-    cart.forEach(item => {total += (item.price*item.quantity)})
+    cart.forEach(item =>{item.offer?total+= applyPromotionsCart(item):total+=item.price*item.quantity})
     return total
 }
 
 // Exercise 4
-const applyPromotionsCart = () =>  {
+const applyPromotionsCart = (item) =>{
 // Apply promotions to each item in the array "cart"
+let price =0
+if(item.offer && item.offer.number <= item.quantity){
+price = (item.price*item.quantity)-((item.price*item.quantity)*item.offer.percent/100)
+}
+ else {
+price =item.price*item.quantity
+ }
+return price
 }
 
 // Exercise 5
 const printCart = () => {
     // Fill the shopping cart modal manipulating the shopping cart dom
+ const list = document.querySelector('#cart_list')
+ const total = document.querySelector('#total_price')
+ cart.forEach(item => {
+   let row = document.createElement('tr')
+   row.setAttribute('scope','row')
+    list.appendChild(row)
+    let name = document.createElement('th')
+    name.textContent = item.name
+    row.appendChild(name)
+    let price = document.createElement('td')
+    price.textContent= item.price
+    row.appendChild(price)
+    let quantity = document.createElement('td')
+    quantity.textContent = item.quantity
+    row.appendChild(quantity)
+    let discount = document.createElement('td')
+    discount.textContent = applyPromotionsCart(item)
+    row.appendChild(discount)
+    total.textContent= calculateTotal()
+ })
    
 }
 
@@ -150,5 +178,8 @@ const removeFromCart = (id) => {
 }
 
 const open_modal = () =>  {
-    printCart();
+    document.querySelector('[data-bs-target="#cartModal"]').addEventListener('click', (e) =>{
+        printCart();
+
+    })
 }
