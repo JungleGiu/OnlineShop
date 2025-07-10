@@ -88,19 +88,30 @@ const total = 0;
    
     console.log(cart)
 }
-
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', e => {
         const id = parseInt(e.currentTarget.dataset.productId)
         buy(id)
+        let cartCounter = document.getElementById('count_product')
+        cartCounter.textContent = cart.length
+        cartCounter.classList.remove('bg-dark')
+        cartCounter.classList.add('bg-danger')
     })
-    
 })
 
 // Exercise 2
 const cleanCart = () =>  {
-
+cart.length = 0
+console.log(cart)
 }
+document.querySelector('#clean-cart').addEventListener('click', (e) => {
+    cleanCart();
+        let cartCounter = document.getElementById('count_product')
+        cartCounter.textContent = cart.length
+        cartCounter.classList.remove('bg-danger')
+        cartCounter.classList.add('bg-dark')
+});
+
 
 // Exercise 3
 const calculateTotal = () =>  {
