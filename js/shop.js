@@ -114,11 +114,12 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
 // Exercise 2
 const cleanCart = () =>  {
 cart.splice(0, cart.length)
-console.log(cart)
+
 }
 document.querySelector('#clean-cart').addEventListener('click', (e) => {
     cleanCart();
     updateCartCounter()
+    printCart();
 });
 
 
@@ -147,6 +148,7 @@ return price
 const printCart = () => {
     // Fill the shopping cart modal manipulating the shopping cart dom
  const list = document.querySelector('#cart_list')
+ list.innerHTML = ''
  const total = document.querySelector('#total_price')
  cart.forEach(item => {
    let row = document.createElement('tr')
@@ -164,8 +166,8 @@ const printCart = () => {
     let discount = document.createElement('td')
     discount.textContent = applyPromotionsCart(item)
     row.appendChild(discount)
-    total.textContent= calculateTotal()
- })
+})
+total.textContent= calculateTotal()
    
 }
 
@@ -178,8 +180,10 @@ const removeFromCart = (id) => {
 }
 
 const open_modal = () =>  {
-    document.querySelector('[data-bs-target="#cartModal"]').addEventListener('click', (e) =>{
+    document.querySelector('[data-bs-target="#cartModal"]').addEventListener('click', () =>{
+
         printCart();
 
     })
 }
+open_modal()
