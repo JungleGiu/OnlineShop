@@ -114,8 +114,8 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
 // Exercise 2
 const cleanCart = () =>  {
 cart.splice(0, cart.length)
-
 }
+
 document.querySelector('#clean-cart').addEventListener('click', (e) => {
     cleanCart();
     updateCartCounter()
@@ -181,9 +181,7 @@ const removeFromCart = (id) => {
 
 const open_modal = () =>  {
     document.querySelector('[data-bs-target="#cartModal"]').addEventListener('click', () =>{
-
         printCart();
-
     })
 }
 open_modal()
