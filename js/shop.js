@@ -153,19 +153,25 @@ const printCart = () => {
  cart.forEach(item => {
    let row = document.createElement('tr')
    row.setAttribute('scope','row')
-    list.appendChild(row)
-    let name = document.createElement('th')
-    name.textContent = item.name
-    row.appendChild(name)
-    let price = document.createElement('td')
-    price.textContent= item.price
-    row.appendChild(price)
-    let quantity = document.createElement('td')
-    quantity.textContent = item.quantity
+   list.appendChild(row)
+   let name = document.createElement('th')
+   name.textContent = item.name
+   row.appendChild(name)
+   let price = document.createElement('td')
+   price.textContent= item.price
+   row.appendChild(price)
+   let quantity = document.createElement('td')
+   quantity.textContent = item.quantity
     row.appendChild(quantity)
     let discount = document.createElement('td')
     discount.textContent = applyPromotionsCart(item)
     row.appendChild(discount)
+    let removeButton = document.createElement('button')
+   removeButton.textContent = '-'
+   removeButton.classList.add('btn')
+   removeButton.setAttribute('style','border: 1px solid black;border-radius: 40%;  align-self: center; align-content: center; margin-left: 10px; margin-right: 10px;')
+   row.appendChild(removeButton)
+   removeButton.addEventListener('click', () => removeFromCart(item.id))
 })
 total.textContent= calculateTotal()
    
@@ -176,7 +182,15 @@ total.textContent= calculateTotal()
 
 // Exercise 7
 const removeFromCart = (id) => {
-
+let item = cart.find(item => item.id === id)
+if (item.quantity > 1){
+    item.quantity -=1
+}
+else{
+    cart.splice(cart.indexOf(item),1)
+}
+updateCartCounter()
+printCart()
 }
 
 const open_modal = () =>  {
