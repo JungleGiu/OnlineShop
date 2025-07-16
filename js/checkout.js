@@ -1,3 +1,6 @@
+import { updateCartCounter } from "./shop.js";
+import { loadSession } from "./session.js";
+
 // Exercise 6
 const validate = () => {
   let error = 0;
@@ -87,6 +90,16 @@ const validate = () => {
     alert("Please fill in all required fields.");
   } else {
     alert("Form submitted successfully");
-	form.submit();
+    form.submit();
   }
 };
+
+const open_modal = () => {
+  document
+    .querySelector('[data-bs-target="#cartModal"]')
+    .addEventListener("click", () => {
+      printCart();
+    });
+};
+
+open_modal();
