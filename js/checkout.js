@@ -1,10 +1,17 @@
-import { updateCartCounter } from "./shop.js";
-import { loadSession } from "./session.js";
-
+// import { getCart,getTotal } from "./view.js";
+// let cart = getCart();
+// let total = getTotal();
 // Exercise 6
-const validate = () => {
-  let error = 0;
+const form = document.querySelector(".form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+ validate()
 
+});
+
+const validate = () => {
+  console.log("validate");
+  let error = 0;
   // Get the input fields
   const fName = document.getElementById("fName");
   const fEmail = document.getElementById("fEmail");
@@ -13,10 +20,6 @@ const validate = () => {
   const fPassword = document.getElementById("fPassword");
   const fPhone = document.getElementById("fPhone");
 
-  const form = document.querySelector(".form");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-  });
   // Validate fields entered by the user: name, phone, password, and email
   const regexName = /^[a-zA-Zs\s]+$/;
   const regexNumber = /^[0-9]+$/;
@@ -94,12 +97,12 @@ const validate = () => {
   }
 };
 
-const open_modal = () => {
-  document
-    .querySelector('[data-bs-target="#cartModal"]')
-    .addEventListener("click", () => {
-      printCart();
-    });
-};
+// const open_modal = () => {
+//   document
+//     .querySelector('[data-bs-target="#cartModal"]')
+//     .addEventListener("click", () => {
+//       printCart();
+//     });
+// };
 
-open_modal();
+// open_modal();

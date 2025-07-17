@@ -5,10 +5,12 @@ import {
   calculateTotal,
   applyPromotionsCart,
 } from "./shop.js";
-import { loadSession, saveSession } from "./session.js";
+import {  saveSession, loadSession } from "./session.js";
 
-export let { cart, total } = loadSession();
 
+let { cart, total } = loadSession();
+
+console.log(cart);
 export const updateCartCounter = (cart) => {
   let cartCounter = document.getElementById("count_product");
   cartCounter.textContent = cart.length;
@@ -26,13 +28,14 @@ document.querySelectorAll(".add-to-cart").forEach((button) => {
 document.querySelector("#clean-cart").addEventListener("click", (e) => {
   cleanCart();
   updateCartCounter(cart);
-  printCart();
+  printCart(cart);
 });
 
-export const printCart = () => {
+export const printCart = (cart) => {
   const list = document.querySelector("#cart_list");
   list.innerHTML = "";
   let totalPrice = document.querySelector("#total_price");
+  console.log(cart);
   cart.forEach((item) => {
     let row = document.createElement("tr");
     row.setAttribute("scope", "row");
@@ -71,6 +74,20 @@ export const printCart = () => {
 
     removeButton.addEventListener("click", () => removeFromCart(item.id));
   });
-  totalPrice.textContent = calculateTotal();
+  totalPrice.textContent = calculateTotal(cart);
+  total = calculateTotal(cart);
   saveSession(cart, total);
 };
+
+const open_modal = () => {
+  document
+    .querySelector('[data-bs-target="#cartModal"]')
+    .addEventListener("click", () => {
+      printCart(cart);
+    });
+};
+
+open_modal();
+
+export const getCart= () => cart;
+export const getTotal= () => total;

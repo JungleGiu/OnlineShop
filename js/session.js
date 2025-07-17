@@ -12,8 +12,8 @@ export const saveSession = (cart, total) => {
 };
 
 export const loadSession = () => {
- const cart = JSON.parse(localStorage.getItem("cart")) || [];
- let total = parseFloat(localStorage.getItem("total")) || 0;
+ const cart = JSON.parse(localStorage.getItem("cart")) ;
+ let total = parseFloat(localStorage.getItem("total")) ;
 
   return { cart, total };
 };
