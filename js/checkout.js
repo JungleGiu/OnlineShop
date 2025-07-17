@@ -1,6 +1,4 @@
-// import { getCart,getTotal } from "./view.js";
-// let cart = getCart();
-// let total = getTotal();
+
 // Exercise 6
 const form = document.querySelector(".form");
 form.addEventListener("submit", (e) => {
@@ -97,12 +95,3 @@ const validate = () => {
   }
 };
 
-// const open_modal = () => {
-//   document
-//     .querySelector('[data-bs-target="#cartModal"]')
-//     .addEventListener("click", () => {
-//       printCart();
-//     });
-// };
-
-// open_modal();
