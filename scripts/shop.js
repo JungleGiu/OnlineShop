@@ -41,7 +41,7 @@ export let calculateTotal = (cart) => {
   return  total.toFixed(2);
 };
 
-// Exercise 4
+
 export let applyPromotionsCart = (item) => {
   
   let price = 0;
@@ -55,9 +55,6 @@ if (item.offer && item.quantity >= item.offer.number){
 };
 
 
-// ** Nivell II **
-
-// Exercise 7
 export let removeFromCart = (id) => {
   let item = cart.find((item) => item.id === id);
   item.quantity > 1 

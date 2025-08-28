@@ -9,19 +9,18 @@ form.addEventListener("submit", (e) => {
 
 let validate = () => {
   let error = 0;
-  // Get the input fields
-  const fName = document.getElementById("fName");
-  const fEmail = document.getElementById("fEmail");
-  const fAddress = document.getElementById("fAddress");
-  const fLastN = document.getElementById("fLastN");
-  const fPassword = document.getElementById("fPassword");
-  const fPhone = document.getElementById("fPhone");
+  let fName = document.getElementById("fName");
+  let fEmail = document.getElementById("fEmail");
+  let fAddress = document.getElementById("fAddress");
+  let fLastN = document.getElementById("fLastN");
+  let fPassword = document.getElementById("fPassword");
+  let fPhone = document.getElementById("fPhone");
 
-  // Validate fields entered by the user: name, phone, password, and email
   const regexName = /^[a-zA-Zs\s]+$/;
   const regexNumber = /^[0-9]+$/;
   const regexEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
   const regexNumLet = /^[a-zA-Z0-9s]+$/;
+
 
   if (
     fName.value.trim() == "" ||
