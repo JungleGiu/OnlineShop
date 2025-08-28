@@ -1,14 +1,13 @@
 
 // Exercise 6
-const form = document.querySelector(".form");
+let form = document.querySelector(".form");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
  validate()
 
 });
 
-const validate = () => {
-  console.log("validate");
+let validate = () => {
   let error = 0;
   // Get the input fields
   const fName = document.getElementById("fName");

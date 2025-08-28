@@ -11,7 +11,7 @@ import {  saveSession, loadSession } from "./session.js";
 let { cart, total } = loadSession();
 
 console.log(cart);
-export const updateCartCounter = (cart) => {
+export let updateCartCounter = (cart) => {
   let cartCounter = document.getElementById("count_product");
   cartCounter.textContent = cart.length;
   cartCounter.classList.remove("bg-dark", "bg-danger");
@@ -31,7 +31,7 @@ document.querySelector("#clean-cart").addEventListener("click", (e) => {
   printCart(cart);
 });
 
-export const printCart = (cart) => {
+export let printCart = (cart) => {
   const list = document.querySelector("#cart_list");
   list.innerHTML = "";
   let totalPrice = document.querySelector("#total_price");
@@ -79,7 +79,7 @@ export const printCart = (cart) => {
   saveSession(cart, total);
 };
 
-const open_modal = () => {
+let open_modal = () => {
   document
     .querySelector('[data-bs-target="#cartModal"]')
     .addEventListener("click", () => {
